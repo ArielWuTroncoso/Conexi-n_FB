@@ -9,8 +9,7 @@ services:
     dockerfilePath: ./Dockerfile
     plan: free
     region: oregon
-    buildCommand: "./mvnw clean package -DskipTests"
-    startCommand: "java -jar target/abrazamente-0.0.1-SNAPSHOT.jar"
+    
     healthCheckPath: /error
     envVars:
       - key: DB_URL
