@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../hooks/useTheme';
+import { Moon, Sun } from 'lucide-react';
 
 const legacyLinks = [
   { label: 'Terapia', href: '/legacy/public/terapia.html' },
@@ -37,7 +38,7 @@ export default function Header() {
 
         <div className="header-actions">
           <button className="theme-toggle-btn" aria-label="Cambiar tema" type="button" onClick={toggleTheme}>
-            {theme === 'dark' ? '☀' : '☾'}
+            {theme === 'dark' ? <Sun strokeWidth={2} /> : <Moon strokeWidth={2} />}
           </button>
           {user ? (
             <>
