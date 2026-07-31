@@ -64,9 +64,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional(readOnly = true)
     public List<UsuarioResponseDTO> obtenerUsuarios() {
-        return repository.findAll().stream().map(mapper::toDTO).toList();
-    }
-
+        return repository.findAllWithRoles()
+            .stream()
+            .map(mapper::toDTO)
+            .toList();
+}
     @Override
     @Transactional(readOnly = true)
     public UsuarioResponseDTO usuarioById(Integer id) {

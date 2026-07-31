@@ -61,7 +61,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuarios", "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/me").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/usuarios", "/usuarios/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/usuarios", "/usuarios/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/usuarios/**").hasAnyRole("USUARIO", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/usuarios/**").hasRole("ADMIN")
                         .anyRequest().authenticated());
@@ -116,5 +116,4 @@ public class SecurityConfig {
                 "{\"fecha\":\"" + OffsetDateTime.now() + "\",\"status\":" + status.value() + ",\"mensaje\":\"" + mensaje + "\"}"
         );
     }
-
 }

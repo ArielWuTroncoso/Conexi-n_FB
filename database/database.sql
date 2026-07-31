@@ -4,6 +4,15 @@
 -- IMPORTANTE: este script NO elimina ni sobrescribe la base MySQL original.
 -- Ejecutar sobre una base PostgreSQL vacía creada previamente con codificación UTF-8.
 -- ============================================================================
+SELECT nombre FROM roles;
+
+SELECT
+    column_name,
+    data_type,
+    is_nullable,
+    column_default
+FROM information_schema.columns
+WHERE table_name = 'roles';
 
 BEGIN;
 

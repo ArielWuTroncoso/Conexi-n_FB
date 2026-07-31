@@ -12,21 +12,48 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-    @Query("SELECT DISTINCT u FROM Usuario u LEFT JOIN FETCH u.usuarioRoles ur LEFT JOIN FETCH ur.rol WHERE LOWER(u.email) = LOWER(:email)")
+    @Query("""
+            SELECT DISTINCT usuario
+            FROM Usuario usuario
+            LEFT JOIN FETCH usuario.usuarioRoles usuarioRol
+            LEFT JOIN FETCH usuarioRol.rol rol
+            WHERE LOWER(usuario.email) = LOWER(:email)
+            """)
     Optional<Usuario> findByEmailWithRoles(@Param("email") String email);
+
+
+    @Query("""
+            SELECT DISTINCT usuario
+            FROM Usuario usuario
+            LEFT JOIN FETCH usuario.usuarioRoles usuarioRol
+            LEFT JOIN FETCH usuarioRol.rol rol
+            """)
+    List<Usuario> findAllWithRoles();
+
 
     Optional<Usuario> findByEmailIgnoreCase(String email);
 
+
     Optional<Usuario> findByRun(String run);
+
 
     Optional<Usuario> findByTelefono(String telefono);
 
+
     boolean existsByEmailIgnoreCase(String email);
+
 
     boolean existsByRun(String run);
 
+
     List<Usuario> findByCiudadIgnoreCase(String ciudad);
 
-    @Query("SELECT u FROM Usuario u WHERE LOWER(u.nombres) LIKE LOWER(CONCAT('%', :nombre, '%')) OR LOWER(u.apellidos) LIKE LOWER(CONCAT('%', :nombre, '%'))")
+
+    @Query("""
+            SELECT usuario
+            FROM Usuario usuario
+            WHERE LOWER(usuario.nombres) LIKE LOWER(CONCAT('%', :nombre, '%'))
+               OR LOWER(usuario.apellidos) LIKE LOWER(CONCAT('%', :nombre, '%'))
+            """)
     List<Usuario> buscarByNombre(@Param("nombre") String nombre);
 }
