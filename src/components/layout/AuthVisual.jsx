@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 export default function AuthVisual({ register = false }) {
   return (
     <section className="auth-visual" aria-label="Presentación de AbrazaMente">
-      // AuthVisual.jsx
       <div className="auth-topbar">
       <Link to="/" className="auth-logo-link"><img src="/assets/AbrazaMente_Logo.svg" alt="AbrazaMente" /></Link>
       <div className="auth-badge"><span /> Tu espacio seguro</div>
